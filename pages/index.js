@@ -95,7 +95,8 @@ export default function Home() {
             padding: '32px',
             margin: '16px',
             boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
-            backgroundColor: appConfig.theme.colors.neutrals[700],
+            /*backgroundColor: appConfig.theme.colors.neutrals[700],*/
+            backgroundColor: 'rgba(19, 24, 38, 0.85)',
           }}
         >
           {/* Formulário */}
@@ -165,8 +166,10 @@ export default function Home() {
               alignItems: 'center',
               maxWidth: '200px',
               padding: '16px',
-              backgroundColor: appConfig.theme.colors.neutrals[800],
-              border: '1px solid',
+              /*backgroundColor: appConfig.theme.colors.neutrals[800],*/
+
+              backgroundColor: 'rgba(14, 17, 22, 0.5)',
+              /*border: '1px solid',*/
               borderColor: appConfig.theme.colors.neutrals[999],
               borderRadius: '10px',
               flex: 1,
@@ -185,8 +188,8 @@ export default function Home() {
               styleSheet={{
                 color: appConfig.theme.colors.neutrals[200],
                 backgroundColor: appConfig.theme.colors.neutrals[900],
-                padding: '3px 10px',
-                borderRadius: '1000px',
+                padding: '5px 10px',
+                borderRadius: '5px',
               }}
             >
               {username}
