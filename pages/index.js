@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { Box, Button, Text, TextField, Image } from '@skynexui/components'
 import appConfig from '../config.json'
 
@@ -54,6 +55,17 @@ export default function Home() {
   return (
     <>
       <GlobalStyle />
+      <Head>
+        <title>TRETACORD</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon/favicon-32x32.png"
+        ></link>
+      </Head>
       <Box
         styleSheet={{
           display: 'flex',
@@ -99,7 +111,16 @@ export default function Home() {
               marginBottom: '32px',
             }}
           >
-            <Title tag="h2">{appConfig.title}</Title>
+            <Title tag="h2">
+              <Box
+                styleSheet={{
+                  display: 'flex',
+                }}
+              >
+                <img src="/favicon/favicon-32x32.png" alt="" />
+                {appConfig.title}
+              </Box>
+            </Title>
             <Text
               variant="body3"
               styleSheet={{
