@@ -4,9 +4,31 @@ import appConfig from '../config.json'
 import { useState } from 'react'
 import GlobalStyle from '../resources/styles/global'
 import Title from '../src/components/Title'
+import axios from 'axios'
 
 export default function Home() {
-  const [userName, setUserName] = useState('juniormartinxo')
+  const [userName, setUserName] = useState('github')
+  const [userReal, setUserReal] = useState(false)
+
+  const handleUserName = (e) => {
+    const url = 'https://api.github.com/users/' + e
+
+    axios
+      .get(url)
+      .then(function (response) {
+        //console.log(response.data.login)
+        setUserName(response.data.login)
+        setUserReal(true)
+      })
+      .catch(function (error) {
+        //console.log('error')
+        setUserName('github')
+        setUserReal(false)
+      })
+      .then(function () {
+        // always executed
+      })
+  }
 
   return (
     <>
@@ -65,6 +87,15 @@ export default function Home() {
               textAlign: 'center',
               marginBottom: '32px',
             }}
+            onSubmit={(e) => {
+              e.preventDefault()
+
+              if (userReal) {
+                console.log('Usuário encontrado!')
+              } else {
+                console.log('Usuário falso!')
+              }
+            }}
           >
             <Title tag="h2">
               <Box
@@ -96,7 +127,7 @@ export default function Home() {
                   backgroundColor: appConfig.theme.colors.neutrals[800],
                 },
               }}
-              onChange={(e) => setUserName(e.target.value)}
+              onChange={(e) => handleUserName(e.target.value)}
               placeholder="Digite seu usuário"
             />
             <Button
