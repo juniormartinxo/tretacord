@@ -1,56 +1,12 @@
 import Head from 'next/head'
 import { Box, Button, Text, TextField, Image } from '@skynexui/components'
 import appConfig from '../config.json'
-
-function GlobalStyle() {
-  return (
-    <style global jsx>{`
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        list-style: none;
-      }
-      body {
-        font-family: 'Open Sans', sans-serif;
-      }
-      /* App fit Height */
-      html,
-      body,
-      #__next {
-        min-height: 100vh;
-        display: flex;
-        flex: 1;
-      }
-      #__next {
-        flex: 1;
-      }
-      #__next > * {
-        flex: 1;
-      }
-      /* ./App fit Height */
-    `}</style>
-  )
-}
-
-function Title(props) {
-  const Tag = props.tag || 'h1'
-  return (
-    <>
-      <Tag>{props.children}</Tag>
-      <style jsx>{`
-        ${Tag} {
-          color: ${appConfig.theme.colors.neutrals['000']};
-          font-size: 24px;
-          font-weight: 600;
-        }
-      `}</style>
-    </>
-  )
-}
+import { useState } from 'react'
+import GlobalStyle from '../resources/styles/global'
+import Title from '../src/components/Title'
 
 export default function Home() {
-  const username = 'juniormartinxo'
+  const [userName, setUserName] = useState('juniormartinxo')
 
   return (
     <>
@@ -74,8 +30,6 @@ export default function Home() {
           backgroundColor: appConfig.theme.colors.primary[400],
           backgroundImage:
             'url(https://media1.giphy.com/media/d2YWbtt6gIhaZfxK/giphy.gif?cid=ecf05e476tp51d5prpwah796oy0jdtwedtp5o7kk83qgiry2&rid=giphy.gif&ct=g)',
-          /*'url(https://media2.giphy.com/media/26tPnMmrIb5i3hFpC/giphy.gif?cid=790b76110c802800adc9ac3fbe291a1525a404b6615be3a5&rid=giphy.gif&ct=g)',
-          /*backgroundRepeat: 'no-repeat',*/
           backgroundSize: 'cover',
           backgroundBlendMode: 'luminosity',
         }}
@@ -142,6 +96,7 @@ export default function Home() {
                   backgroundColor: appConfig.theme.colors.neutrals[800],
                 },
               }}
+              onChange={(e) => setUserName(e.target.value)}
               placeholder="Digite seu usuário"
             />
             <Button
@@ -166,14 +121,13 @@ export default function Home() {
               alignItems: 'center',
               maxWidth: '200px',
               padding: '16px',
-              /*backgroundColor: appConfig.theme.colors.neutrals[800],*/
-
               backgroundColor: 'rgba(14, 17, 22, 0.5)',
-              /*border: '1px solid',*/
-              borderColor: appConfig.theme.colors.neutrals[999],
+              border: '1px solid',
+              borderColor: appConfig.theme.colors.primary[300],
               borderRadius: '10px',
               flex: 1,
               minHeight: '240px',
+              boxShadow: '19px 13px 20px -12px rgba(0,0,0,0.1)',
             }}
           >
             <Image
@@ -181,7 +135,7 @@ export default function Home() {
                 borderRadius: '50%',
                 marginBottom: '16px',
               }}
-              src={`https://github.com/${username}.png`}
+              src={`https://github.com/${userName}.png`}
             />
             <Text
               variant="body4"
@@ -192,7 +146,7 @@ export default function Home() {
                 borderRadius: '5px',
               }}
             >
-              {username}
+              {userName}
             </Text>
           </Box>
           {/* Photo Area */}
