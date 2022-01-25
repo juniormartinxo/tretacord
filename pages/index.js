@@ -2,26 +2,31 @@ import Head from 'next/head'
 import { Box, Button, Text, TextField, Image } from '@skynexui/components'
 import appConfig from '../config.json'
 import { useState } from 'react'
-import GlobalStyle from '../resources/styles/global'
 import Title from '../src/components/Title'
 import axios from 'axios'
+import { useRouter } from 'next/router'
 
 export default function Home() {
   const [userName, setUserName] = useState('github')
   const [userReal, setUserReal] = useState(false)
+  const router = useRouter()
 
   const handleUserName = (e) => {
     const url = 'https://api.github.com/users/' + e
 
     axios
-      .get(url)
+      .get(url, {
+        headers: {
+          'User-Agent': 'Awesome-Octocat-App',
+        },
+      })
       .then(function (response) {
-        //console.log(response.data.login)
+        //console.log(response.data)
         setUserName(response.data.login)
         setUserReal(true)
       })
       .catch(function (error) {
-        //console.log('error')
+        //console.log(error)
         setUserName('github')
         setUserReal(false)
       })
@@ -32,7 +37,6 @@ export default function Home() {
 
   return (
     <>
-      <GlobalStyle />
       <Head>
         <title>TRETACORD</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -91,7 +95,7 @@ export default function Home() {
               e.preventDefault()
 
               if (userReal) {
-                console.log('Usuário encontrado!')
+                router.push('/chat/' + userName)
               } else {
                 console.log('Usuário falso!')
               }
