@@ -1,10 +1,10 @@
-import Head from 'next/head'
 import { Box, Button, Text, TextField, Image } from '@skynexui/components'
 import appConfig from '../config.json'
 import { useState } from 'react'
 import Title from '../src/components/Title'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import HeadApp from '../src/components/HeadApp'
 
 export default function Home() {
   const [userName, setUserName] = useState('github')
@@ -38,17 +38,7 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>TRETACORD</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon/favicon-32x32.png"
-        ></link>
-      </Head>
+      <HeadApp title="TRETACORD"></HeadApp>
       <Box
         styleSheet={{
           display: 'flex',

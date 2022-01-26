@@ -1,8 +1,9 @@
 import { createGlobalStyle } from 'styled-components'
+import appConfig from '../../config.json'
 
 const GlobalStyle = createGlobalStyle`
   * {
-    font-family: "Fira Sans", sans-serif;
+    font-family: 'Fira Sans', sans-serif;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
