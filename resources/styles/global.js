@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
   html,
   body,
   #__next {
-  line-height: 1;
+    line-height: 1;
     min-height: 100vh;
     display: flex;
     flex: 1;
@@ -24,6 +24,7 @@ const GlobalStyle = createGlobalStyle`
   #__next > * {
     flex: 1;
   }
+  /* ./App fit Height */
 `
 
 export default GlobalStyle

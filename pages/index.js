@@ -8,6 +8,7 @@ import { useRouter } from 'next/router'
 
 export default function Home() {
   const [userName, setUserName] = useState('github')
+  const [name, setName] = useState('')
   const [userReal, setUserReal] = useState(false)
   const router = useRouter()
 
@@ -132,7 +133,7 @@ export default function Home() {
                 },
               }}
               onChange={(e) => handleUserName(e.target.value)}
-              placeholder="Digite seu usuário"
+              placeholder="Digite seu usuário do GitHub"
             />
             <Button
               type="submit"
