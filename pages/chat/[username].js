@@ -33,7 +33,6 @@ export default function Chat() {
   return (
     <>
       <HeadApp title="TRETACORD :: Chat"></HeadApp>
-      <HeadApp title="TRETACORD"></HeadApp>
       <Box
         styleSheet={{
           display: 'flex',
@@ -42,7 +41,9 @@ export default function Chat() {
           backgroundImage: 'url(/images/bg_chat.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          padding: '1rem',
+          color: '#fff',
+          width: '100%',
+          padding: '15px',
         }}
       >
         <Box
@@ -50,16 +51,86 @@ export default function Chat() {
             display: 'flex',
             alignItems: 'start',
             justifyContent: 'space-between',
-            flexDirection: 'column',
+            backgroundColor: 'rgba(19, 24, 38, 0.90)',
+            color: '#C7D8FF',
             width: '100%',
-            borderRadius: '5px',
-            padding: '32px',
-            boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
-            backgroundColor: 'rgba(19, 24, 38, 0.95)',
-            color: '#fff',
           }}
         >
-          <p>Olá {name}</p>
+          <Box
+            styleSheet={{
+              display: 'flex',
+              alignItems: 'start',
+              justifyContent: 'space-between',
+              flexDirection: 'column',
+              padding: '15px',
+              width: '20%',
+            }}
+          >
+            <Box>
+              <Title tag="h3">Tretacord</Title>
+            </Box>
+          </Box>
+
+          <Box
+            styleSheet={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'start',
+              flexDirection: 'row',
+              borderRadius: '5px',
+              padding: '15px',
+              textAlign: 'justify',
+              width: '60%',
+            }}
+          >
+            <Box
+              styleSheet={{
+                fontFamily: '"Teko", sans-serif',
+                fontSize: '20px',
+              }}
+            >
+              <Text
+                styleSheet={{
+                  fontFamily: '"Teko", sans-serif',
+                  fontSize: '20px',
+                }}
+              >
+                # | treta-dev
+              </Text>
+              <Text
+                styleSheet={{
+                  fontFamily: '"Fira Sans", sans-serif;',
+                  fontSize: 'inherit',
+                  marginLeft: '10px',
+                  paddingLeft: '10px',
+                  borderLeft: '1px solid #362e44',
+                  fontSize: '12px',
+                }}
+              >
+                Este é o canal oficial da treta
+              </Text>
+            </Box>
+          </Box>
+          <Box
+            styleSheet={{
+              display: 'flex',
+              alignItems: 'start',
+              justifyContent: 'space-between',
+              flexDirection: 'column',
+              padding: '15px',
+              width: '20%',
+              textAlign: 'justify',
+            }}
+          >
+            <Text
+              styleSheet={{
+                fontFamily: '"Teko", sans-serif',
+                fontSize: '20px',
+              }}
+            >
+              Participantes
+            </Text>
+          </Box>
         </Box>
       </Box>
     </>
