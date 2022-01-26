@@ -96,10 +96,28 @@ export default function Home() {
               <Box
                 styleSheet={{
                   display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexDirection: 'row',
                 }}
               >
-                <img src="/favicon/favicon-32x32.png" alt="" />
-                {appConfig.title}
+                <Box>
+                  <img src="/favicon/favicon-32x32.png" alt="" />
+                </Box>
+                <Box
+                  styleSheet={{
+                    marginLeft: '10px',
+                  }}
+                >
+                  <Text
+                    styleSheet={{
+                      fontFamily: '"Teko", sans-serif',
+                      fontSize: '1.5rem',
+                    }}
+                  >
+                    {appConfig.title}
+                  </Text>
+                </Box>
               </Box>
             </Title>
             <Text
