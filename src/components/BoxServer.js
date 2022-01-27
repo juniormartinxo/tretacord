@@ -3,7 +3,7 @@ import Title from '../../src/components/Title'
 
 import appConfig from '../../config.json'
 
-function BoxServer() {
+function BoxServer({ userName }) {
   return (
     <Box
       styleSheet={{
@@ -116,12 +116,24 @@ function BoxServer() {
             flexDirection: 'row',
           }}
         >
-          <Box>
-            <img src="/favicon/favicon-32x32.png" alt="" />
-          </Box>
-          <Box>
-            <Title tag="h3">{appConfig.title}</Title>
-          </Box>
+          <Image
+            styleSheet={{
+              borderRadius: '50%',
+              width: '32px',
+            }}
+            src={`https://github.com/${userName}.png`}
+          />
+          <Text
+            variant="body4"
+            styleSheet={{
+              color: appConfig.theme.colors.neutrals[200],
+              backgroundColor: appConfig.theme.colors.neutrals[900],
+              padding: '5px 10px',
+              borderRadius: '5px',
+            }}
+          >
+            {userName}
+          </Text>
         </Box>
       </Box>
     </Box>
