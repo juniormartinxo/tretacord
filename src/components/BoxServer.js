@@ -64,9 +64,9 @@ function BoxServer({ userName }) {
       <Box
         styleSheet={{
           display: 'flex',
-          alignItems: 'center',
+          alignItems: 'start',
           justifyContent: 'start',
-          flexDirection: 'row',
+          flexDirection: 'column',
           width: '100%',
           padding: '15px',
           height: {
@@ -84,14 +84,21 @@ function BoxServer({ userName }) {
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'row',
+            padding: '10px 0',
           }}
         >
-          <Box>
-            <img src="/favicon/favicon-32x32.png" alt="" />
-          </Box>
-          <Box>
-            <Title tag="h3">{appConfig.title}</Title>
-          </Box>
+          <Text># duvidas</Text>
+        </Box>
+        <Box
+          styleSheet={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'row',
+            padding: '10px 0',
+          }}
+        >
+          <Text># regras</Text>
         </Box>
       </Box>
 
