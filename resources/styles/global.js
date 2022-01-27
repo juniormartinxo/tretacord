@@ -61,6 +61,14 @@ const GlobalStyle = createGlobalStyle`
     color: #C7D8FF;
   }
 
+  a{
+    color: #3a3d45;
+  }
+
+  a:hover{
+    color: #BF3636;
+  }
+
   /* App fit Height */
   html,
   body,

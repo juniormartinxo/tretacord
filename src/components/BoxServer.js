@@ -1,9 +1,14 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components'
 import Title from '../../src/components/Title'
+import { IconLogOut } from '../../src/components/icons'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import appConfig from '../../config.json'
 
 function BoxServer({ userName }) {
+  const router = useRouter()
+
   return (
     <Box
       styleSheet={{
@@ -112,28 +117,51 @@ function BoxServer({ userName }) {
           styleSheet={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'space-between',
             flexDirection: 'row',
+            width: '100%',
           }}
         >
-          <Image
+          <Box
             styleSheet={{
-              borderRadius: '50%',
-              width: '32px',
-            }}
-            src={`https://github.com/${userName}.png`}
-          />
-          <Text
-            variant="body4"
-            styleSheet={{
-              color: appConfig.theme.colors.neutrals[200],
-              backgroundColor: appConfig.theme.colors.neutrals[900],
-              padding: '5px 10px',
-              borderRadius: '5px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'start',
+              flexDirection: 'row',
+              width: '100%',
             }}
           >
-            {userName}
-          </Text>
+            <Box>
+              <Image
+                styleSheet={{
+                  borderRadius: '50%',
+                  width: '32px',
+                  marginRight: '10px',
+                }}
+                src={`https://github.com/${userName}.png`}
+              />
+            </Box>
+            <Box>
+              <Text
+                variant="body4"
+                styleSheet={{
+                  color: appConfig.theme.colors.neutrals[200],
+                  backgroundColor: appConfig.theme.colors.neutrals[900],
+                  padding: '5px 10px',
+                  borderRadius: '5px',
+                }}
+              >
+                {userName}
+              </Text>
+            </Box>
+          </Box>
+          <Box>
+            <Link href={'/'}>
+              <a>
+                <IconLogOut h={16} />
+              </a>
+            </Link>
+          </Box>
         </Box>
       </Box>
     </Box>
