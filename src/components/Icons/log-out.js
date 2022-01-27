@@ -19,4 +19,4 @@ function IconLogOut({ h = 24 }) {
   )
 }
 
-export { IconLogOut }
+export default IconLogOut

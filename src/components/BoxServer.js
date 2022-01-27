@@ -1,6 +1,6 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components'
 import Title from '../../src/components/Title'
-/*import { IconLogOut } from '../../src/components/icons/log-out'*/
+import IconLogOut from '../../src/components/icons/log-out'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -165,8 +165,26 @@ function BoxServer({ userName }) {
           <Box>
             <Link href={'/'}>
               <a>
-                Sair
-                {/*<IconLogOut h={16} />*/}
+                <Box
+                  styleSheet={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'start',
+                    flexDirection: 'row',
+                    width: '100%',
+                  }}
+                >
+                  <Box
+                    styleSheet={{
+                      marginRight: '5px',
+                    }}
+                  >
+                    Sair
+                  </Box>
+                  <Box>
+                    <IconLogOut h={16} />
+                  </Box>
+                </Box>
               </a>
             </Link>
           </Box>
