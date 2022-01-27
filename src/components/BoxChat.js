@@ -11,7 +11,13 @@ function BoxChat() {
         alignItems: 'start',
         justifyContent: 'space-between',
         flexDirection: 'column',
-        width: '70%',
+        width: {
+          xs: '100%',
+          sm: '100%',
+          md: '50%',
+          lg: '50%',
+          xl: '70%',
+        },
         backgroundColor: '#1c2335',
       }}
     >
@@ -71,19 +77,22 @@ function BoxChat() {
             type="textarea"
             styleSheet={{
               width: '100%',
+              height: '42px',
               border: '0',
               resize: 'none',
               borderRadius: '5px',
               padding: '1rem 3.5rem',
               backgroundColor: appConfig.theme.colors.neutrals[800],
               color: appConfig.theme.colors.neutrals[200],
-              lineHeight: '1.5',
+              /*lineHeight: '1.5',*/
               transition:
                 'border var(--timing-short) ease-in,background-color var(--timing-short) ease-in',
               backgroundClip: 'padding-box',
               display: 'block',
               appearance: 'none',
               overflow: 'hidden',
+              display: 'flex',
+              alignContent: 'center',
             }}
           />
         </Box>

@@ -11,7 +11,13 @@ function BoxMembers() {
         alignItems: 'start',
         justifyContent: 'space-between',
         flexDirection: 'column',
-        width: '15%',
+        width: {
+          xs: '100%',
+          sm: '100%',
+          md: '25%',
+          lg: '25%',
+          xl: '15%',
+        },
         backgroundColor: '#131825',
       }}
     >

@@ -7,6 +7,7 @@ import Title from '../../src/components/Title'
 import BoxServer from '../../src/components/BoxServer'
 import BoxChat from '../../src/components/BoxChat'
 import BoxMembers from '../../src/components/BoxMembers'
+import appConfig from '../../config.json'
 
 export default function Chat() {
   const [name, setName] = useState('github')
@@ -34,7 +35,7 @@ export default function Chat() {
 
   return (
     <>
-      <HeadApp title="TRETACORD :: Chat"></HeadApp>
+      <HeadApp title={appConfig.title + ` | #treta-dev`}></HeadApp>
       <Box
         styleSheet={{
           display: 'flex',
@@ -56,6 +57,13 @@ export default function Chat() {
             color: '#C7D8FF',
             width: '100%',
             height: '100vh',
+            flexDirection: {
+              xs: 'column',
+              sm: 'column',
+              md: 'row',
+              lg: 'row',
+              xl: 'row',
+            },
           }}
         >
           <BoxServer />

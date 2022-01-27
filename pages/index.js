@@ -38,7 +38,7 @@ export default function Home() {
 
   return (
     <>
-      <HeadApp title="TRETACORD"></HeadApp>
+      <HeadApp title={appConfig.title}></HeadApp>
       <Box
         styleSheet={{
           display: 'flex',

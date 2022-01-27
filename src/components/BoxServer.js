@@ -11,7 +11,13 @@ function BoxServer() {
         alignItems: 'start',
         justifyContent: 'space-between',
         flexDirection: 'column',
-        width: '15%',
+        width: {
+          xs: '100%',
+          sm: '100%',
+          md: '25%',
+          lg: '25%',
+          xl: '15%',
+        },
         backgroundColor: '#131825',
       }}
     >
@@ -24,7 +30,13 @@ function BoxServer() {
           borderBottom: '1px solid #000000',
           width: '100%',
           padding: '15px',
-          height: '5vh',
+          height: {
+            xs: '80px',
+            sm: '80px',
+            md: '5vh',
+            lg: '5vh',
+            xl: '5vh',
+          },
         }}
       >
         <Box
@@ -47,14 +59,71 @@ function BoxServer() {
       <Box
         styleSheet={{
           display: 'flex',
-          alignItems: 'start',
-          justifyContent: 'space-between',
-          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'start',
+          flexDirection: 'row',
           width: '100%',
           padding: '15px',
-          height: '94vh',
+          height: {
+            xs: '80px',
+            sm: '80px',
+            md: '90vh',
+            lg: '90vh',
+            xl: '90vh',
+          },
         }}
-      ></Box>
+      >
+        <Box
+          styleSheet={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'row',
+          }}
+        >
+          <Box>
+            <img src="/favicon/favicon-32x32.png" alt="" />
+          </Box>
+          <Box>
+            <Title tag="h3">{appConfig.title}</Title>
+          </Box>
+        </Box>
+      </Box>
+
+      <Box
+        styleSheet={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'start',
+          flexDirection: 'row',
+          width: '100%',
+          padding: '15px',
+          height: {
+            xs: '80px',
+            sm: '80px',
+            md: '5vh',
+            lg: '5vh',
+            xl: '5vh',
+          },
+          borderTop: '1px solid #000000',
+        }}
+      >
+        <Box
+          styleSheet={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'row',
+          }}
+        >
+          <Box>
+            <img src="/favicon/favicon-32x32.png" alt="" />
+          </Box>
+          <Box>
+            <Title tag="h3">{appConfig.title}</Title>
+          </Box>
+        </Box>
+      </Box>
     </Box>
   )
 }
