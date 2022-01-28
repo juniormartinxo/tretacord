@@ -1,13 +1,13 @@
 import GlobalStyle from '../src/styles/global'
-import { AuthProvider } from '../src/hooks/useAuth'
+import { Providers } from '../src/hooks/providers'
 
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <AuthProvider>
+      <Providers>
         <GlobalStyle />
         <Component {...pageProps} />
-      </AuthProvider>
+      </Providers>
     </>
   )
 }

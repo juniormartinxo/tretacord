@@ -12,11 +12,11 @@ import BoxMembers from '../../../src/components/BoxMembers'
 import appConfig from '../../../config.json'
 import { getMessages } from '../../../src/services/messages.service'
 import { getChannel, getChannels } from '../../../src/services/channels.service'
-import { useAuth } from '../../../src/hooks/useAuth'
+import { useUser } from '../../../src/hooks/useUser'
 
 export default function Chat() {
-  const { userName, setUserName, name, setName } = useAuth()
-  const [messages, setMessages] = useState([])
+  const { userName, setUserName, name, setName } = useUser()
+  //const [messages, setMessages] = useState([])
   const [channel, setChannel] = useState([])
   const { query } = useRouter()
   const { channel_id, username } = query

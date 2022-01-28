@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 
-export const AuthContext = React.createContext({})
+export const UserContext = React.createContext({})
 
-export const AuthProvider = (props) => {
+export const UserProvider = (props) => {
   const [name, setName] = useState('github')
   const [userName, setUserName] = useState('github')
   const router = useRouter()
@@ -28,10 +28,10 @@ export const AuthProvider = (props) => {
   }, [router])
 
   return (
-    <AuthContext.Provider value={{ userName, setUserName, name, setName }}>
+    <UserContext.Provider value={{ userName, setUserName, name, setName }}>
       {props.children}
-    </AuthContext.Provider>
+    </UserContext.Provider>
   )
 }
 
-export const useAuth = () => React.useContext(AuthContext)
+export const useUser = () => React.useContext(UserContext)
