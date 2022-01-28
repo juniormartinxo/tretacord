@@ -13,27 +13,17 @@ import appConfig from '../../../config.json'
 import { getMessages } from '../../../src/services/messages.service'
 import { getChannel, getChannels } from '../../../src/services/channels.service'
 import { useUser } from '../../../src/hooks/useUser'
+import { useChannel } from '../../../src/hooks/useChannels'
 
 export default function Chat() {
   const { userName, setUserName, name, setName } = useUser()
+  const { channels, setChannels } = useChannel()
   //const [messages, setMessages] = useState([])
   const [channel, setChannel] = useState([])
   const { query } = useRouter()
   const { channel_id, username } = query
   const router = useRouter()
-  const [channels, setChannels] = useState([])
-
-  async function fetchChannels() {
-    await getChannels().then(setChannels)
-  }
-
-  useEffect(() => {
-    fetchChannels()
-  }, [channels])
-
-  useEffect(() => {
-    console.log('userName', userName)
-  }, [userName])
+  //const [channels, setChannels] = useState([])
 
   async function fetchMessages() {
     await getMessages().then(setMessages)
@@ -81,7 +71,7 @@ export default function Chat() {
           }}
         >
           <BoxServer userName={userName} channels={channels} />
-          <BoxChat userName={userName} />
+          <BoxChat />
           <BoxMembers />
         </Box>
       </Box>

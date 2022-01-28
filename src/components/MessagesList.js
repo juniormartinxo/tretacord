@@ -1,4 +1,5 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components'
+import { useMessage } from '../hooks/useMessages'
 
 /*
 import { marked } from 'marked'
@@ -35,7 +36,9 @@ marked.setOptions({
 
 import appConfig from '../../config.json'
 
-function MessagesList({ messages, userName }) {
+function MessagesList() {
+  const { messages, setMessages } = useMessage()
+
   function handleDate(date) {
     const today = new Date()
     const yesterday = new Date(today.getTime() - 86400000)
@@ -109,11 +112,15 @@ function MessagesList({ messages, userName }) {
                       display: 'inline-block',
                       marginRight: '8px',
                     }}
-                    src={`https://github.com/${userName}.png`}
+                    src={`https://github.com/${message.user}.png`}
                   />
                 </Box>
-                <Box>
-                  <Text tag="strong">{message.userSend}</Text>
+                <Box
+                  styleSheet={{
+                    fontSize: '14rem',
+                  }}
+                >
+                  <Text tag="strong">{message.user}</Text>
                 </Box>
                 <Box
                   styleSheet={{
@@ -132,10 +139,10 @@ function MessagesList({ messages, userName }) {
               </Box>
               <Text
                 styleSheet={{
-                  fontSize: '16px',
+                  fontSize: '14px',
                   marginLeft: '8px',
                   color: appConfig.theme.colors.neutrals[300],
-                  padding: '15px',
+                  padding: '8px 15px',
                 }}
                 tag="span"
               >

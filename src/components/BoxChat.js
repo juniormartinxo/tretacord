@@ -3,12 +3,15 @@ import Title from '../../src/components/Title'
 import MessagesList from '../../src/components/MessagesList'
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import { useMessage } from '../hooks/useMessages'
+import { useUser } from '../hooks/useUser'
 
 import appConfig from '../../config.json'
 
-function BoxChat({ userName }) {
+function BoxChat() {
   const [message, setMessage] = useState('')
-  const [messages, setMessages] = useState([])
+  const { messages, setMessages } = useMessage()
+  const { userName, setUserName, name, setName } = useUser()
   const [rows, setRows] = useState(1)
 
   function handleMessages(message) {
@@ -95,7 +98,7 @@ function BoxChat({ userName }) {
             height: '100%',
           }}
         >
-          <MessagesList messages={messages} userName={userName} />
+          <MessagesList />
         </Box>
 
         <Box

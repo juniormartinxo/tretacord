@@ -9,8 +9,8 @@ export const MessageProvider = (props) => {
   const router = useRouter()
   const { channel_id } = router.query
 
-  async function fetchMessages() {
-    await getMessages().then(setMessages)
+  async function fetchMessages(channel_idv4) {
+    await getMessages(channel_idv4).then(setMessages)
   }
 
   useEffect(() => {
