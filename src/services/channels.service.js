@@ -12,5 +12,5 @@ export async function getChannel(channel_idv4) {
     .from('channels')
     .select('*')
     .eq('idv4', channel_idv4)
-    .then(({ data }) => data)
+    .then(({ data }) => data[0])
 }

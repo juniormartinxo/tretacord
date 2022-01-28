@@ -6,7 +6,13 @@
 
 import { UserProvider, userName, setUserName, name, setName } from './useUser'
 import { MessageProvider, messages, setMessages } from './useMessages'
-import { ChannelProvider, channels, setChannels } from './useChannels'
+import {
+  ChannelProvider,
+  channels,
+  setChannels,
+  channel,
+  setChannel,
+} from './useChannels'
 
 const providers = [
   {
@@ -19,7 +25,7 @@ const providers = [
   },
   {
     component: ChannelProvider,
-    props: { channels, setChannels },
+    props: { channels, setChannels, channel, setChannel },
   },
 ]
 

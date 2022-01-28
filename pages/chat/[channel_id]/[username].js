@@ -1,5 +1,4 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components'
-import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import supabase from '../../../src/utils/supabase-client'
@@ -16,14 +15,11 @@ import { useUser } from '../../../src/hooks/useUser'
 import { useChannel } from '../../../src/hooks/useChannels'
 
 export default function Chat() {
-  const { userName, setUserName, name, setName } = useUser()
+  const { userName, setUserName } = useUser()
   const { channels, setChannels } = useChannel()
-  //const [messages, setMessages] = useState([])
   const [channel, setChannel] = useState([])
   const { query } = useRouter()
   const { channel_id, username } = query
-  const router = useRouter()
-  //const [channels, setChannels] = useState([])
 
   async function fetchMessages() {
     await getMessages().then(setMessages)

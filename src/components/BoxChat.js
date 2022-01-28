@@ -5,25 +5,30 @@ import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { useMessage } from '../hooks/useMessages'
 import { useUser } from '../hooks/useUser'
+import { useChannel } from '../hooks/useChannels'
+import { addMessage } from '../services/messages.service'
 
 import appConfig from '../../config.json'
 
 function BoxChat() {
   const [message, setMessage] = useState('')
-  const { messages, setMessages } = useMessage()
-  const { userName, setUserName, name, setName } = useUser()
   const [rows, setRows] = useState(1)
+  const { messages, setMessages } = useMessage()
+  const { channel, setChannel } = useChannel()
+  const { userName } = useUser()
 
   function handleMessages(message) {
     const msg = {
       idv4: uuidv4(),
-      channel_idv4: 'cdb9750b-5514-4ec1-8671-7bc3b855c11f',
+      channel_idv4: channel.idv4,
       user: userName,
       date: new Date().toLocaleDateString(),
       time: new Date().toLocaleTimeString(),
       text: message,
       situ: 'A',
     }
+
+    addMessage(msg)
 
     setMessages([msg, ...messages])
     setMessage('')
@@ -65,7 +70,7 @@ function BoxChat() {
             fontSize: '20px',
           }}
         >
-          # | treta-dev
+          # | {channel.name}
         </Text>
         <Text
           styleSheet={{
@@ -75,7 +80,7 @@ function BoxChat() {
             fontSize: '12px',
           }}
         >
-          Este é o canal oficial da treta
+          {channel.description}
         </Text>
       </Box>
 
