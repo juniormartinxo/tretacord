@@ -48,7 +48,6 @@ function MessagesList({ messages, userName }) {
         marginBottom: '20px',
         height: '100%',
         overflow: 'none',
-        border: '1px solid red',
       }}
     >
       {messages.map((message) => {
