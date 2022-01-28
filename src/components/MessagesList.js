@@ -1,4 +1,7 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components'
+import { addMessage } from '../../utils/supabase-client'
+
+addMessage()
 /*
 import { marked } from 'marked'
 import DOMPurify from 'dompurify'

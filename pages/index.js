@@ -12,16 +12,11 @@ export default function Home() {
   const [userReal, setUserReal] = useState(false)
   const router = useRouter()
 
-  const handleUserName = (e) => {
-    const url = 'https://api.github.com/users/' + e
+  const handleUserName = (username) => {
+    const url = 'https://api.github.com/users/' + username
 
     axios
-      .get(url, {
-        headers: {
-          'User-Agent':
-            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
-        },
-      })
+      .get(url)
       .then(function (response) {
         //console.log(response.data)
         setUserName(response.data.login)
@@ -87,7 +82,9 @@ export default function Home() {
               e.preventDefault()
 
               if (userReal) {
-                router.push('/chat/' + userName)
+                router.push(
+                  '/chat/cdb9750b-5514-4ec1-8671-7bc3b855c11f/' + userName,
+                )
               } else {
                 console.log('Usuário falso!')
               }

@@ -2,19 +2,19 @@ import { Box, Button, Text, TextField, Image } from '@skynexui/components'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import HeadApp from '../../src/components/HeadApp'
-import Title from '../../src/components/Title'
-import BoxServer from '../../src/components/BoxServer'
-import BoxChat from '../../src/components/BoxChat'
-import BoxMembers from '../../src/components/BoxMembers'
-import appConfig from '../../config.json'
+import HeadApp from '../../../src/components/HeadApp'
+import Title from '../../../src/components/Title'
+import BoxServer from '../../../src/components/BoxServer'
+import BoxChat from '../../../src/components/BoxChat'
+import BoxMembers from '../../../src/components/BoxMembers'
+import appConfig from '../../../config.json'
 
 export default function Chat() {
   const [name, setName] = useState('github')
   const [userName, setUserName] = useState('github')
   const { query } = useRouter()
-  console.log('query', query.slug[0])
-  const url = 'https://api.github.com/users/' + query.slug[1]
+
+  const url = 'https://api.github.com/users/' + query.username
 
   axios
     .get(url)
