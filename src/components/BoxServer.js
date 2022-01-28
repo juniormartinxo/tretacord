@@ -3,11 +3,22 @@ import Title from '../../src/components/Title'
 import IconLogOut from './IconLogOut'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { getChannels } from '../services/channels.service'
 
 import appConfig from '../../config.json'
 
 function BoxServer({ userName }) {
   const router = useRouter()
+  const [channels, setChannels] = useState([])
+
+  async function fetchChannels() {
+    await getChannels().then(setChannels)
+  }
+
+  useEffect(() => {
+    fetchChannels()
+  }, [channels])
 
   return (
     <Box
@@ -78,24 +89,49 @@ function BoxServer({ userName }) {
           },
         }}
       >
-        <Text
-          as="a"
-          styleSheet={{
-            padding: '15px',
-            cursor: 'pointer',
-          }}
-        >
-          # duvidas
-        </Text>
-        <Text
-          as="a"
-          styleSheet={{
-            padding: '15px',
-            cursor: 'pointer',
-          }}
-        >
-          # regras
-        </Text>
+        {channels.map((channel) => {
+          if (channel.idv4 === router.query.channel_id) {
+            return (
+              <Link href={`/chat/${channel.idv4}/${userName}`} id={channel.id}>
+                <Text
+                  as="a"
+                  styleSheet={{
+                    padding: '10px 15px',
+                    fontSize: '14px',
+                    cursor: 'pointer',
+                    width: '100%',
+                    borderRadius: '3px',
+                    backgroundColor: '#191f2e',
+                    color: '#C7D8FF',
+                  }}
+                >
+                  # {channel.name}
+                </Text>
+              </Link>
+            )
+          } else {
+            return (
+              <Link href={`/chat/${channel.idv4}/${userName}`} id={channel.id}>
+                <Text
+                  as="a"
+                  styleSheet={{
+                    padding: '10px 15px',
+                    fontSize: '14px',
+                    cursor: 'pointer',
+                    width: '100%',
+                    borderRadius: '3px',
+                    hover: {
+                      backgroundColor: '#191f2e',
+                      color: '#C7D8FF',
+                    },
+                  }}
+                >
+                  # {channel.name}
+                </Text>
+              </Link>
+            )
+          }
+        })}
       </Box>
 
       <Box

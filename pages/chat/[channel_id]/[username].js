@@ -1,34 +1,56 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import supabase from '../../../utils/supabase-client'
+
 import HeadApp from '../../../src/components/HeadApp'
 import Title from '../../../src/components/Title'
 import BoxServer from '../../../src/components/BoxServer'
 import BoxChat from '../../../src/components/BoxChat'
 import BoxMembers from '../../../src/components/BoxMembers'
 import appConfig from '../../../config.json'
+import { getMessages } from '../../../src/services/messages.service'
+import { getChannel } from '../../../src/services/channels.service'
 
 export default function Chat() {
   const [name, setName] = useState('github')
   const [userName, setUserName] = useState('github')
+  const [messages, setMessages] = useState([])
+  const [channel, setChannel] = useState([])
   const { query } = useRouter()
+  const { channel_id, username } = query
 
-  const url = 'https://api.github.com/users/' + query.username
+  const url = 'https://api.github.com/users/' + username
 
-  axios
-    .get(url)
-    .then(function (response) {
-      setName(response.data.name)
-      setUserName(response.data.login)
-    })
-    .catch(function (error) {
-      setName('github')
-      setUserName('github')
-    })
-    .then(function () {
-      // always executed
-    })
+  if (username !== undefined) {
+    axios
+      .get(url)
+      .then(function (response) {
+        setName(response.data.name)
+        setUserName(response.data.login)
+      })
+      .catch(function (error) {
+        setName('github')
+        setUserName('github')
+      })
+  }
+
+  async function fetchMessages() {
+    await getMessages().then(setMessages)
+  }
+
+  async function fetchChannel(channel_idv4) {
+    await getChannel(channel_idv4).then(setChannel)
+  }
+
+  useEffect(() => {
+    channel_id && fetchChannel(channel_id)
+  }, [channel_id])
+
+  useEffect(() => {
+    console.log('channel-2', channel)
+  }, [channel_id])
 
   return (
     <>

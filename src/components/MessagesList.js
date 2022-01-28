@@ -1,7 +1,5 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components'
-import { addMessage } from '../../utils/supabase-client'
 
-addMessage()
 /*
 import { marked } from 'marked'
 import DOMPurify from 'dompurify'
@@ -38,8 +36,6 @@ marked.setOptions({
 import appConfig from '../../config.json'
 
 function MessagesList({ messages, userName }) {
-  console.log(messages)
-
   function handleDate(date) {
     const today = new Date()
     const yesterday = new Date(today.getTime() - 86400000)
