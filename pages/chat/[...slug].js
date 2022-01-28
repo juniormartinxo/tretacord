@@ -13,14 +13,11 @@ export default function Chat() {
   const [name, setName] = useState('github')
   const [userName, setUserName] = useState('github')
   const { query } = useRouter()
-  const url = 'https://api.github.com/users/' + query.username
+  console.log('query', query.slug[0])
+  const url = 'https://api.github.com/users/' + query.slug[1]
 
   axios
-    .get(url, {
-      headers: {
-        'User-Agent': 'Awesome-Octocat-App',
-      },
-    })
+    .get(url)
     .then(function (response) {
       setName(response.data.name)
       setUserName(response.data.login)

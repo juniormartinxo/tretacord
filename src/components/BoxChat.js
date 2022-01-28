@@ -13,11 +13,13 @@ function BoxChat({ userName }) {
 
   function handleMessages(message) {
     const msg = {
-      id: uuidv4(),
-      userSend: userName,
-      text: message,
+      idv4: uuidv4(),
+      channel_idv4: 'cdb9750b-5514-4ec1-8671-7bc3b855c11f',
+      user: userName,
       date: new Date().toLocaleDateString(),
       time: new Date().toLocaleTimeString(),
+      text: message,
+      situ: 'A',
     }
 
     setMessages([msg, ...messages])
