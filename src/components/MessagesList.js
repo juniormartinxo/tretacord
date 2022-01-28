@@ -36,6 +36,20 @@ import appConfig from '../../config.json'
 
 function MessagesList({ messages, userName }) {
   console.log(messages)
+
+  function handleDate(date) {
+    const today = new Date()
+    const yesterday = new Date(today.getTime() - 86400000)
+
+    if (date === today.toLocaleDateString()) {
+      return 'Hoje'
+    } else if (date.toLocaleDateString() === yesterday.toLocaleDateString()) {
+      return 'Ontem'
+    }
+
+    return date.toLocaleDateString()
+  }
+
   return (
     <Box
       tag="ul"
@@ -113,7 +127,7 @@ function MessagesList({ messages, userName }) {
                       color: appConfig.theme.colors.neutrals[400],
                     }}
                   >
-                    {new Date().toLocaleDateString()}
+                    {handleDate(message.date)} - {message.time}
                   </Text>
                 </Box>
               </Box>

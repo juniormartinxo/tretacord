@@ -16,6 +16,8 @@ function BoxChat({ userName }) {
       id: uuidv4(),
       userSend: userName,
       text: message,
+      date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString(),
     }
 
     setMessages([msg, ...messages])
