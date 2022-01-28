@@ -12,18 +12,16 @@ import BoxMembers from '../../../src/components/BoxMembers'
 import appConfig from '../../../config.json'
 import { getMessages } from '../../../src/services/messages.service'
 import { getChannel, getChannels } from '../../../src/services/channels.service'
+import { useAuth } from '../../../src/hooks/useAuth'
 
 export default function Chat() {
-  const [name, setName] = useState('github')
-  const [userName, setUserName] = useState('github')
+  const { userName, setUserName, name, setName } = useAuth()
   const [messages, setMessages] = useState([])
   const [channel, setChannel] = useState([])
   const { query } = useRouter()
   const { channel_id, username } = query
   const router = useRouter()
   const [channels, setChannels] = useState([])
-
-  const url = 'https://api.github.com/users/' + username
 
   async function fetchChannels() {
     await getChannels().then(setChannels)
@@ -33,18 +31,9 @@ export default function Chat() {
     fetchChannels()
   }, [channels])
 
-  if (username !== undefined) {
-    axios
-      .get(url)
-      .then(function (response) {
-        setName(response.data.name)
-        setUserName(response.data.login)
-      })
-      .catch(function (error) {
-        setName('github')
-        setUserName('github')
-      })
-  }
+  useEffect(() => {
+    console.log('userName', userName)
+  }, [userName])
 
   async function fetchMessages() {
     await getMessages().then(setMessages)
@@ -56,10 +45,6 @@ export default function Chat() {
 
   useEffect(() => {
     channel_id && fetchChannel(channel_id)
-  }, [channel_id])
-
-  useEffect(() => {
-    console.log('channel-2', channel)
   }, [channel_id])
 
   return (

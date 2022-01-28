@@ -1,31 +1,28 @@
-import supabase from '../../utils/supabase-client'
-import { useRouter } from 'next/router'
-import { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
-export function useMessages() {
-  const { query } = useRouter()
-  const { channel } = query
-  const { username } = query
-  const [messages, setMessages] = useState([])
+export const MessageContext = React.createContext({})
+
+export const MessageProvider = (props) => {
+  const [user, setUser] = useState({
+    name: '',
+  })
 
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await supabase
-        .from('channels')
-        .select('*')
-        .where({ channel: channel })
-        .orderBy('id', 'desc')
-        .limit(10)
-        .then((data) => {
-          setMessages(data)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+    const userStorage = localStorage.getItem('user')
+    if (userStorage) {
+      setUser(JSON.parse(userStorage))
+    } else {
+      setUser({
+        name: '',
+      })
     }
+  }, [])
 
-    fetchData()
-  }, [channel])
-
-  return messages
+  return (
+    <MessageContext.Provider value={{ user, setUser }}>
+      {props.children}
+    </MessageContext.Provider>
+  )
 }
+
+export const useMessage = () => React.useContext(MessageContext)
