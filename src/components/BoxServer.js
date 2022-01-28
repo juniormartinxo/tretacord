@@ -78,28 +78,24 @@ function BoxServer({ userName }) {
           },
         }}
       >
-        <Box
+        <Text
+          as="a"
           styleSheet={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexDirection: 'row',
-            padding: '10px 0',
+            padding: '15px',
+            cursor: 'pointer',
           }}
         >
-          <Text># duvidas</Text>
-        </Box>
-        <Box
+          # duvidas
+        </Text>
+        <Text
+          as="a"
           styleSheet={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexDirection: 'row',
-            padding: '10px 0',
+            padding: '15px',
+            cursor: 'pointer',
           }}
         >
-          <Text># regras</Text>
-        </Box>
+          # regras
+        </Text>
       </Box>
 
       <Box

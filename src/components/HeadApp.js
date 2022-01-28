@@ -11,6 +11,10 @@ function HeadApp(props) {
         href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;700&family=Teko:wght@300;400&display=swap"
         rel="stylesheet"
       />
+      <link
+        rel="stylesheet"
+        href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.2/build/styles/default.min.css"
+      ></link>
 
       <link
         rel="icon"

@@ -62,7 +62,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a{
-    color: #3a3d45;
+    color: #737b91;
     text-decoration: none;
   }
 

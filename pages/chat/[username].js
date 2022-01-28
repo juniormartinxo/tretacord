@@ -67,7 +67,7 @@ export default function Chat() {
           }}
         >
           <BoxServer userName={userName} />
-          <BoxChat />
+          <BoxChat userName={userName} />
           <BoxMembers />
         </Box>
       </Box>
