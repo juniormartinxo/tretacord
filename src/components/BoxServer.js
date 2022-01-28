@@ -4,21 +4,11 @@ import IconLogOut from './IconLogOut'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { getChannels } from '../services/channels.service'
 
 import appConfig from '../../config.json'
 
-function BoxServer({ userName }) {
+function BoxServer({ userName, channels }) {
   const router = useRouter()
-  const [channels, setChannels] = useState([])
-
-  async function fetchChannels() {
-    await getChannels().then(setChannels)
-  }
-
-  useEffect(() => {
-    fetchChannels()
-  }, [channels])
 
   return (
     <Box
@@ -89,10 +79,14 @@ function BoxServer({ userName }) {
           },
         }}
       >
+        <Title tag={'h3'}>CANAIS</Title>
         {channels.map((channel) => {
           if (channel.idv4 === router.query.channel_id) {
             return (
-              <Link href={`/chat/${channel.idv4}/${userName}`} id={channel.id}>
+              <Link
+                href={`/chat/${channel.idv4}/${userName}`}
+                key={channel.idv4}
+              >
                 <Text
                   as="a"
                   styleSheet={{
@@ -111,7 +105,7 @@ function BoxServer({ userName }) {
             )
           } else {
             return (
-              <Link href={`/chat/${channel.idv4}/${userName}`} id={channel.id}>
+              <Link href={`/chat/${channel.idv4}/${userName}`} key={channel.id}>
                 <Text
                   as="a"
                   styleSheet={{

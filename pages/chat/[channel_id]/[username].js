@@ -2,7 +2,7 @@ import { Box, Button, Text, TextField, Image } from '@skynexui/components'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import supabase from '../../../utils/supabase-client'
+import supabase from '../../../src/utils/supabase-client'
 
 import HeadApp from '../../../src/components/HeadApp'
 import Title from '../../../src/components/Title'
@@ -11,7 +11,7 @@ import BoxChat from '../../../src/components/BoxChat'
 import BoxMembers from '../../../src/components/BoxMembers'
 import appConfig from '../../../config.json'
 import { getMessages } from '../../../src/services/messages.service'
-import { getChannel } from '../../../src/services/channels.service'
+import { getChannel, getChannels } from '../../../src/services/channels.service'
 
 export default function Chat() {
   const [name, setName] = useState('github')
@@ -20,8 +20,18 @@ export default function Chat() {
   const [channel, setChannel] = useState([])
   const { query } = useRouter()
   const { channel_id, username } = query
+  const router = useRouter()
+  const [channels, setChannels] = useState([])
 
   const url = 'https://api.github.com/users/' + username
+
+  async function fetchChannels() {
+    await getChannels().then(setChannels)
+  }
+
+  useEffect(() => {
+    fetchChannels()
+  }, [channels])
 
   if (username !== undefined) {
     axios
@@ -85,7 +95,7 @@ export default function Chat() {
             },
           }}
         >
-          <BoxServer userName={userName} />
+          <BoxServer userName={userName} channels={channels} />
           <BoxChat userName={userName} />
           <BoxMembers />
         </Box>

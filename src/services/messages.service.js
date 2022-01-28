@@ -1,4 +1,4 @@
-import supabase from '../../utils/supabase-client'
+import supabase from '../utils/supabase-client'
 
 export async function getMessages() {
   return supabase
