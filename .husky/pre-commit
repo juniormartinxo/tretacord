@@ -30,7 +30,7 @@ npm run check-lint ||
 #)
 
 # If everything passes... Now we can commit
-echo -e '\e[23m 🤔🤔🤔🤔... Alright... Code looks good to me... Trying to build now. 🤔🤔🤔🤔\e[m'
+echo -e '\e[32m 🤔🤔🤔🤔... Alright... Code looks good to me... Trying to build now. 🤔🤔🤔🤔\e[m'
 
 npm run build ||
 (

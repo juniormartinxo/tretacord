@@ -4,28 +4,19 @@
  * https://tousu.in/?qa=180264/
  */
 
-import { UserProvider, userName, setUserName, name, setName } from './useUser'
-import { MessageProvider, messages, setMessages } from './useMessages'
-import {
-  ChannelProvider,
-  channels,
-  setChannels,
-  channel,
-  setChannel,
-} from './useChannels'
+import { UserProvider } from './useUser'
+import { MessageProvider } from './useMessages'
+import { ChannelProvider } from './useChannels'
 
 const providers = [
   {
     component: UserProvider,
-    props: { userName, setUserName, name, setName },
   },
   {
     component: MessageProvider,
-    props: { messages, setMessages },
   },
   {
     component: ChannelProvider,
-    props: { channels, setChannels, channel, setChannel },
   },
 ]
 
