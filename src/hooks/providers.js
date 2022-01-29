@@ -31,6 +31,6 @@ const providers = [
 
 export const Providers = ({ children }) => {
   return providers.reduceRight((child, provider) => {
-    return <provider.component {...provider.props} children={child} />
+    return <provider.component {...provider.props}>{child}</provider.component>
   }, children)
 }

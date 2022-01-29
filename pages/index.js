@@ -18,12 +18,13 @@ export default function Home() {
     axios
       .get(url)
       .then(function (response) {
-        //console.log(response.data)
         setUserName(response.data.login)
         setUserReal(true)
       })
-      .catch(function (error) {
-        //console.log(error)
+      .catch(function (error, data) {
+        if (error) {
+          console.log(error.stack)
+        }
         setUserName('github')
         setUserReal(false)
       })
@@ -62,7 +63,7 @@ export default function Home() {
             padding: '32px',
             margin: '16px',
             boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
-            /*backgroundColor: appConfig.theme.colors.neutrals[700],*/
+            /* backgroundColor: appConfig.theme.colors.neutrals[700], */
             backgroundColor: 'rgba(19, 24, 38, 0.85)',
           }}
         >
@@ -100,7 +101,7 @@ export default function Home() {
                 }}
               >
                 <Box>
-                  <img src="/favicon/favicon-32x32.png" alt="" />
+                  <Image src={'/favicon/favicon-32x32.png'} />
                 </Box>
                 <Box
                   styleSheet={{

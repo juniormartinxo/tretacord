@@ -115,7 +115,7 @@ function BoxChat() {
           }}
         >
           <TextField
-            placeholder="Tretar em # | treta-dev"
+            placeholder={`Tretar em # | ${channel.name}`}
             type="textarea"
             rows={rows}
             styleSheet={{
@@ -127,7 +127,6 @@ function BoxChat() {
               backgroundColor: appConfig.theme.colors.neutrals[800],
               color: appConfig.theme.colors.neutrals[200],
               backgroundClip: 'padding-box',
-              display: 'block',
               appearance: 'none',
               overflow: 'hidden',
               display: 'flex',
@@ -136,11 +135,9 @@ function BoxChat() {
             onChange={(e) => setMessage(e.target.value)}
             onKeyPress={(e) => {
               if (e.key === 'Enter' && e.shiftKey) {
-                /*console.log(e.shiftKey)*/
+                /* console.log(e.shiftKey) */
               } else {
                 if (e.key === 'Enter') {
-                  console.log(message)
-
                   handleMessages(message)
 
                   e.target.value = ''

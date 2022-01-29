@@ -7,17 +7,19 @@ export const MessageContext = React.createContext({})
 export const MessageProvider = (props) => {
   const [messages, setMessages] = useState([])
   const router = useRouter()
-  const { channel_id } = router.query
+  const { channelId } = router.query
 
-  async function fetchMessages(channel_idv4) {
-    await getMessages(channel_idv4).then(setMessages)
+  async function fetchMessages(channelIdv4) {
+    await getMessages(channelIdv4).then(setMessages)
   }
 
   useEffect(() => {
-    if (channel_id !== undefined) {
-      fetchMessages(channel_id)
+    if (channelId !== undefined) {
+      fetchMessages(channelId)
+
+      console.log('messages', messages)
     }
-  }, [channel_id])
+  }, [channelId])
 
   return (
     <MessageContext.Provider value={{ messages, setMessages }}>

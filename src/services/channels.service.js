@@ -7,10 +7,10 @@ export async function getChannels() {
     .then(({ data }) => data)
 }
 
-export async function getChannel(channel_idv4) {
+export async function getChannel(channelIdv4) {
   return supabase
     .from('channels')
     .select('*')
-    .eq('idv4', channel_idv4)
+    .eq('idv4', channelIdv4)
     .then(({ data }) => data[0])
 }

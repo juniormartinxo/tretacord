@@ -7,7 +7,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "check-format": "prettier --check .",
+    "check-lint": "eslint . --ext js",
+    "format": "prettier --write .",
+    "test-all": "npm run check-format && npm run check-lint && npm run build",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@skynexui/components": "^1.23.5",
@@ -22,5 +27,18 @@
     "react-dom": "17.0.2",
     "styled-components": "5.3.3",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^12.0.9",
+    "eslint": "^7.32.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0",
+    "eslint-plugin-react": "^7.28.0",
+    "husky": "^7.0.0",
+    "prettier": "2.5.1"
   }
 }

@@ -54,7 +54,7 @@ function BoxServer({ userName, channels }) {
           }}
         >
           <Box>
-            <img src="/favicon/favicon-32x32.png" alt="" />
+            <Image src={'/favicon/favicon-32x32.png'} />
           </Box>
           <Box>
             <Title tag="h3">{appConfig.title}</Title>
@@ -86,6 +86,7 @@ function BoxServer({ userName, channels }) {
               <Link
                 href={`/chat/${channel.idv4}/${userName}`}
                 key={channel.idv4}
+                passHref
               >
                 <Text
                   as="a"
@@ -106,7 +107,11 @@ function BoxServer({ userName, channels }) {
             )
           } else {
             return (
-              <Link href={`/chat/${channel.idv4}/${userName}`} key={channel.id}>
+              <Link
+                href={`/chat/${channel.idv4}/${userName}`}
+                key={channel.id}
+                passHref
+              >
                 <Text
                   as="a"
                   styleSheet={{

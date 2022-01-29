@@ -20,7 +20,10 @@ export const UserProvider = (props) => {
           setName(response.data.name)
           setUserName(response.data.login)
         })
-        .catch(function (error) {
+        .catch(function (error, data) {
+          if (error) {
+            console.log(error)
+          }
           setName('github')
           setUserName('github')
         })

@@ -46,7 +46,7 @@ function MessagesList() {
 
     if (date === today.toLocaleDateString()) {
       return 'Hoje'
-    } else if (date.toLocaleDateString() === yesterday.toLocaleDateString()) {
+    } else if (date === yesterday.toLocaleDateString()) {
       return 'Ontem'
     }
 
@@ -57,7 +57,6 @@ function MessagesList() {
     <Box
       tag="ul"
       styleSheet={{
-        overflow: 'scroll',
         display: 'flex',
         flexDirection: 'column-reverse',
         flex: 1,

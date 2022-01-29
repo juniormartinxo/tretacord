@@ -8,23 +8,23 @@ export const ChannelProvider = (props) => {
   const [channels, setChannels] = useState([])
   const [channel, setChannel] = useState([])
   const router = useRouter()
-  const { channel_id } = router.query
+  const { channelId } = router.query
 
   async function fetchChannels() {
     await getChannels().then(setChannels)
   }
 
-  async function fetchChannel(channel_id) {
-    await getChannel(channel_id).then(setChannel)
+  async function fetchChannel(channelId) {
+    await getChannel(channelId).then(setChannel)
   }
 
   useEffect(() => {
-    if (channel_id !== undefined) {
-      fetchChannel(channel_id)
+    if (channelId !== undefined) {
+      fetchChannel(channelId)
     }
 
     fetchChannels()
-  }, [channel_id])
+  }, [channelId])
 
   return (
     <ChannelContext.Provider

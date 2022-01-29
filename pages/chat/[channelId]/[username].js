@@ -19,19 +19,15 @@ export default function Chat() {
   const { channels, setChannels } = useChannel()
   const [channel, setChannel] = useState([])
   const { query } = useRouter()
-  const { channel_id, username } = query
+  const { channelId, username } = query
 
-  async function fetchMessages() {
-    await getMessages().then(setMessages)
-  }
-
-  async function fetchChannel(channel_idv4) {
-    await getChannel(channel_idv4).then(setChannel)
+  async function fetchChannel(channelIdv4) {
+    await getChannel(channelIdv4).then(setChannel)
   }
 
   useEffect(() => {
-    channel_id && fetchChannel(channel_id)
-  }, [channel_id])
+    channelId && fetchChannel(channelId)
+  }, [channelId])
 
   return (
     <>
