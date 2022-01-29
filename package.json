@@ -14,6 +14,7 @@
     "@supabase/supabase-js": "^1.29.4",
     "axios": "0.25.0",
     "dompurify": "^2.3.5",
+    "marked": "^4.0.12",
     "net": "^1.0.2",
     "next": "^12.0.9",
     "prismjs": "^1.26.0",

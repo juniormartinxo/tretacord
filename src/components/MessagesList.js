@@ -1,9 +1,10 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components'
 import { useMessage } from '../hooks/useMessages'
 
-/*
 import { marked } from 'marked'
+
 import DOMPurify from 'dompurify'
+/*
 import Prism from 'prismjs'
 */
 /**
@@ -67,9 +68,9 @@ function MessagesList() {
       }}
     >
       {messages.map((message) => {
-        /*
         const markdown = marked.parse(message.text)
-        //const sanitized = DOMPurify.sanitize(markdown)
+        const sanitized = DOMPurify.sanitize(markdown)
+        /*
         const html = Prism.highlight(
           markdown,
           Prism.languages.javascript,
@@ -85,8 +86,10 @@ function MessagesList() {
               borderRadius: '5px',
               padding: '6px',
               marginBottom: '12px',
+              transition: 'background-color 0.5s ease',
               hover: {
                 backgroundColor: appConfig.theme.colors.neutrals[700],
+                transition: 'background-color 0.5s ease',
               },
             }}
           >
@@ -148,7 +151,7 @@ function MessagesList() {
               >
                 <Box
                   dangerouslySetInnerHTML={{
-                    __html: message.text,
+                    __html: sanitized,
                   }}
                 />
               </Text>

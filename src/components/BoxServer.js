@@ -37,8 +37,8 @@ function BoxServer({ userName, channels }) {
           width: '100%',
           padding: '15px',
           height: {
-            xs: '80px',
-            sm: '80px',
+            xs: 'auto',
+            sm: 'auto',
             md: '5vh',
             lg: '5vh',
             xl: '5vh',
@@ -71,8 +71,8 @@ function BoxServer({ userName, channels }) {
           width: '100%',
           padding: '15px',
           height: {
-            xs: '80px',
-            sm: '80px',
+            xs: 'auto',
+            sm: 'auto',
             md: '90vh',
             lg: '90vh',
             xl: '90vh',
@@ -97,6 +97,7 @@ function BoxServer({ userName, channels }) {
                     borderRadius: '3px',
                     backgroundColor: '#191f2e',
                     color: '#C7D8FF',
+                    transition: 'background-color 1s ease',
                   }}
                 >
                   # {channel.name}
@@ -114,9 +115,11 @@ function BoxServer({ userName, channels }) {
                     cursor: 'pointer',
                     width: '100%',
                     borderRadius: '3px',
+                    transition: 'background-color 1s ease',
                     hover: {
                       backgroundColor: '#191f2e',
                       color: '#C7D8FF',
+                      transition: 'background-color 0.5s ease',
                     },
                   }}
                 >
