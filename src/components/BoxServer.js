@@ -1,4 +1,4 @@
-import { Box, Button, Text, TextField, Image } from '@skynexui/components'
+import { Box, Text, Image } from '@skynexui/components'
 import Title from '../../src/components/Title'
 import IconLogOut from './IconLogOut'
 import Link from 'next/link'
@@ -88,48 +88,17 @@ function BoxServer({ userName, channels }) {
                 key={channel.idv4}
                 passHref
               >
-                <Text
-                  as="a"
-                  styleSheet={{
-                    padding: '10px 15px',
-                    fontSize: '14px',
-                    cursor: 'pointer',
-                    width: '100%',
-                    borderRadius: '3px',
-                    backgroundColor: '#191f2e',
-                    color: '#C7D8FF',
-                    transition: 'background-color 1s ease',
-                  }}
-                >
-                  # {channel.name}
-                </Text>
+                <a># {channel.name}</a>
               </Link>
             )
           } else {
             return (
               <Link
                 href={`/chat/${channel.idv4}/${userName}`}
-                key={channel.id}
+                key={channel.idv4}
                 passHref
               >
-                <Text
-                  as="a"
-                  styleSheet={{
-                    padding: '10px 15px',
-                    fontSize: '14px',
-                    cursor: 'pointer',
-                    width: '100%',
-                    borderRadius: '3px',
-                    transition: 'background-color 1s ease',
-                    hover: {
-                      backgroundColor: '#191f2e',
-                      color: '#C7D8FF',
-                      transition: 'background-color 0.5s ease',
-                    },
-                  }}
-                >
-                  # {channel.name}
-                </Text>
+                <a># {channel.name}</a>
               </Link>
             )
           }
@@ -197,7 +166,7 @@ function BoxServer({ userName, channels }) {
             </Box>
           </Box>
           <Box>
-            <Link href={'/'}>
+            <Link href={'/'} passHref>
               <a>
                 <Box
                   styleSheet={{

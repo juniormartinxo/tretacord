@@ -17,7 +17,7 @@ export const MessageProvider = (props) => {
     if (channelId !== undefined) {
       fetchMessages(channelId)
     }
-  }, [channelId, messages])
+  }, [router])
 
   return (
     <MessageContext.Provider value={{ messages, setMessages }}>

@@ -11,13 +11,12 @@ import { marked } from 'marked'
 import DOMPurify from 'dompurify'
 /*
 import Prism from 'prismjs'
+import 'highlight.js/styles/default.css'
 */
+
 /**
  * Importa os estilos do highlight.js
  */
-/*
-import 'highlight.js/styles/default.css'
-*/
 
 // Set options
 // `highlight` example uses https://highlightjs.org
@@ -73,7 +72,9 @@ function MessagesList() {
       return 'Ontem'
     }
 
-    return date.toLocaleDateString()
+    console.log('date', date)
+
+    return date
   }
 
   return (
