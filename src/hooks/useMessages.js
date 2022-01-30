@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { getMessages } from '../services/messages.service'
+import { getMessages, deleteMessage } from '../services/messages.service'
 
 export const MessageContext = React.createContext({})
 
@@ -16,10 +16,8 @@ export const MessageProvider = (props) => {
   useEffect(() => {
     if (channelId !== undefined) {
       fetchMessages(channelId)
-
-      console.log('messages', messages)
     }
-  }, [channelId])
+  }, [channelId, messages])
 
   return (
     <MessageContext.Provider value={{ messages, setMessages }}>

@@ -15,6 +15,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@nextui-org/react": "^1.0.2-beta.3",
     "@skynexui/components": "^1.23.5",
     "@supabase/supabase-js": "^1.29.4",
     "axios": "0.25.0",

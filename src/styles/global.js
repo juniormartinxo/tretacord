@@ -54,13 +54,16 @@ const GlobalStyle = createGlobalStyle`
     list-style: none;
   }
 
+  /*
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Teko', sans-serif;
     font-weight: 400;
     font-size: 20px;
     color: #C7D8FF;
   }
+  */
 
+  /*
   a{
     color: #737b91;
     text-decoration: none;
@@ -69,7 +72,7 @@ const GlobalStyle = createGlobalStyle`
   a:hover{
     color: #BF3636;
   }
-
+*/
   /* App fit Height */
   html,
   body,

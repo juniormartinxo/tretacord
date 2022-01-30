@@ -1,5 +1,10 @@
-import { Box, Button, Text, TextField, Image } from '@skynexui/components'
+import { useState } from 'react'
+import { Box, Text, TextField, Image } from '@skynexui/components'
+import { Button } from '@nextui-org/react'
 import { useMessage } from '../hooks/useMessages'
+import Viewer from '../../src/components/Viewer'
+import { useChannel } from '../hooks/useChannels'
+import { getMessages, deleteMessage } from '../services/messages.service'
 
 import { marked } from 'marked'
 
@@ -39,6 +44,24 @@ import appConfig from '../../config.json'
 
 function MessagesList() {
   const { messages, setMessages } = useMessage()
+  const [editable, setEditable] = useState(false)
+  const [display, setDisplay] = useState({ idv4: '', display: 'none' })
+  const { channel } = useChannel()
+
+  function handleEditable(situation) {
+    setEditable(situation)
+  }
+
+  async function fetchDeleteMessage(messageIdv4, channelIdv4) {
+    await deleteMessage(messageIdv4).then(({ data, error }) => {
+      if (error !== null) {
+        getMessages(channelIdv4).then(setMessages)
+      } else {
+        console.log(error)
+      }
+    })
+    // await getMessages(channelIdv4).then(setMessages)
+  }
 
   function handleDate(date) {
     const today = new Date()
@@ -78,9 +101,8 @@ function MessagesList() {
         */
 
         return (
-          <Text
+          <Box
             key={message.id}
-            tag="li"
             styleSheet={{
               borderRadius: '5px',
               padding: '6px',
@@ -91,6 +113,13 @@ function MessagesList() {
                 transition: 'background-color 0.5s ease',
               },
             }}
+            id={message.idv4}
+            onMouseEnter={(elem) =>
+              setDisplay({ idv4: message.idv4, display: 'block' })
+            }
+            onMouseLeave={(elem) =>
+              setDisplay({ idv4: message.idv4, display: 'none' })
+            }
           >
             <Box
               styleSheet={{
@@ -145,17 +174,44 @@ function MessagesList() {
                   marginLeft: '8px',
                   color: appConfig.theme.colors.neutrals[300],
                   padding: '8px 15px',
+                  position: 'relative',
                 }}
                 tag="span"
               >
                 <Box
-                  dangerouslySetInnerHTML={{
-                    __html: sanitized,
+                  styleSheet={{
+                    display:
+                      message.idv4 === display.idv4
+                        ? `${display.display}`
+                        : 'none',
+                    position: 'absolute',
+                    top: '-50px',
+                    right: '0',
                   }}
-                />
+                  data-id={message.idv4}
+                >
+                  <Button.Group size="sm" color={'error'}>
+                    <Button>One</Button>
+                    <Button
+                      onClick={() => {
+                        fetchDeleteMessage(message.idv4, channel.id)
+                      }}
+                    >
+                      Excluir
+                    </Button>
+                    <Button
+                      onClick={() => {
+                        handleEditable(!editable)
+                      }}
+                    >
+                      Editar
+                    </Button>
+                  </Button.Group>
+                </Box>
+                <Viewer mkdText={sanitized} editable={editable} />
               </Text>
             </Box>
-          </Text>
+          </Box>
         )
       })}
     </Box>

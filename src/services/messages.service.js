@@ -15,3 +15,12 @@ export async function addMessage(message) {
 
   return { data, error }
 }
+
+export async function deleteMessage(messageIdv4) {
+  const { data, error } = await supabase
+    .from('messages')
+    .update({ situ: 'B' })
+    .eq('idv4', messageIdv4)
+
+  return { data, error }
+}

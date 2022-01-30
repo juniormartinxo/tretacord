@@ -23,7 +23,7 @@ export default function Home() {
       })
       .catch(function (error, data) {
         if (error) {
-          console.log(error.stack)
+          console.log(error)
         }
         setUserName('github')
         setUserReal(false)
