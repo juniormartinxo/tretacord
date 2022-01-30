@@ -1,19 +1,32 @@
+import { useEffect, useState } from 'react'
 import { Box, Button, Text, TextField, Image } from '@skynexui/components'
 import Title from '../../src/components/Title'
 import MessagesList from '../../src/components/MessagesList'
-import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { useMessage } from '../hooks/useMessages'
 import { useUser } from '../hooks/useUser'
 import { useChannel } from '../hooks/useChannels'
-import { addMessage } from '../services/messages.service'
+import { addMessage, listenerMessages } from '../services/messages.service'
+import { ButtonSendSticker } from './ButtonSendSticker'
 
 import appConfig from '../../config.json'
+import supabase from '../utils/supabase-client'
+import { useRouter } from 'next/router'
+
+function escutaMensagensEmTempoReal(adicionaMensagem) {
+  return supabase
+    .from('mensagens')
+    .on('INSERT', (respostaLive) => {
+      adicionaMensagem(respostaLive.new)
+    })
+    .subscribe()
+}
 
 function BoxChat() {
   const [message, setMessage] = useState('')
   const [rows, setRows] = useState(1)
-  const { messages, setMessages } = useMessage()
+  const { messages, setMessages, updateMessages, setUpdateMessages } =
+    useMessage()
   const { channel, setChannel } = useChannel()
   const { userName } = useUser()
 
@@ -28,9 +41,11 @@ function BoxChat() {
       situ: 'A',
     }
 
+    console.log('msg', msg)
+
     addMessage(msg)
 
-    setMessages([msg, ...messages])
+    // setMessages([msg, ...messages])
     setMessage('')
     setRows(1)
   }
@@ -92,7 +107,8 @@ function BoxChat() {
           flexDirection: 'column',
           width: '100%',
           padding: '15px',
-          height: '95vh',
+          minHeight: '95vh',
+          maxHeight: '95vh',
         }}
       >
         <Box
@@ -101,6 +117,8 @@ function BoxChat() {
             alignItems: 'center',
             width: '100%',
             height: '100%',
+            overflow: 'hidden',
+            overflowY: 'scroll',
           }}
         >
           <MessagesList />
@@ -148,6 +166,12 @@ function BoxChat() {
             }}
             onInput={(e) => {
               setRows(e.target.value.split('\n').length)
+            }}
+          />
+          <ButtonSendSticker
+            onStickerClick={(sticker) => {
+              console.log('sticker', sticker)
+              handleMessages(`:sticker: ${sticker}`)
             }}
           />
         </Box>

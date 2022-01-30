@@ -1,7 +1,22 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components'
 import Title from '../../src/components/Title'
+import { Link } from '@nextui-org/react'
 
 import appConfig from '../../config.json'
+
+const users = [
+  'juniormartinxo',
+  'vanessametonini',
+  'omariosouto',
+  'juunegreiros',
+  'peas',
+  'moisesrmartins',
+  'bessax',
+  'peixebabel',
+  'liviagabos',
+  'designernatan',
+  'alura',
+]
 
 function BoxMembers() {
   return (
@@ -64,196 +79,40 @@ function BoxMembers() {
             width: '100%',
           }}
         >
-          <Box
-            styleSheet={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'start',
-              flexDirection: 'row',
-              width: '100%',
-            }}
-          >
-            <Image
-              styleSheet={{
-                borderRadius: '50%',
-                width: '32px',
-                marginRight: '10px',
-              }}
-              src={`https://github.com/juniormartinxo.png`}
-            />
-            <Text variant="body4">juniormartinxo</Text>
-          </Box>
-          <Box
-            styleSheet={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'start',
-              flexDirection: 'row',
-              width: '100%',
-            }}
-          >
-            <Image
-              styleSheet={{
-                borderRadius: '50%',
-                width: '32px',
-                marginRight: '10px',
-              }}
-              src={`https://github.com/vanessametonini.png`}
-            />
-            <Text variant="body4">vanessametonini</Text>
-          </Box>
-          <Box
-            styleSheet={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'start',
-              flexDirection: 'row',
-              width: '100%',
-            }}
-          >
-            <Image
-              styleSheet={{
-                borderRadius: '50%',
-                width: '32px',
-                marginRight: '10px',
-              }}
-              src={`https://github.com/omariosouto.png`}
-            />
-            <Text variant="body4">omariosouto</Text>
-          </Box>
-          <Box
-            styleSheet={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'start',
-              flexDirection: 'row',
-              width: '100%',
-            }}
-          >
-            <Image
-              styleSheet={{
-                borderRadius: '50%',
-                width: '32px',
-                marginRight: '10px',
-              }}
-              src={`https://github.com/juunegreiros.png`}
-            />
-            <Text variant="body4">juunegreiros</Text>
-          </Box>
-          <Box
-            styleSheet={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'start',
-              flexDirection: 'row',
-              width: '100%',
-            }}
-          >
-            <Image
-              styleSheet={{
-                borderRadius: '50%',
-                width: '32px',
-                marginRight: '10px',
-              }}
-              src={`https://github.com/peas.png`}
-            />
-            <Text variant="body4">peas</Text>
-          </Box>
-          <Box
-            styleSheet={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'start',
-              flexDirection: 'row',
-              width: '100%',
-            }}
-          >
-            <Image
-              styleSheet={{
-                borderRadius: '50%',
-                width: '32px',
-                marginRight: '10px',
-              }}
-              src={`https://github.com/bessax.png`}
-            />
-            <Text variant="body4">bessax</Text>
-          </Box>
-          <Box
-            styleSheet={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'start',
-              flexDirection: 'row',
-              width: '100%',
-            }}
-          >
-            <Image
-              styleSheet={{
-                borderRadius: '50%',
-                width: '32px',
-                marginRight: '10px',
-              }}
-              src={`https://github.com/peixebabel.png`}
-            />
-            <Text variant="body4">peixebabel</Text>
-          </Box>
-          <Box
-            styleSheet={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'start',
-              flexDirection: 'row',
-              width: '100%',
-            }}
-          >
-            <Image
-              styleSheet={{
-                borderRadius: '50%',
-                width: '32px',
-                marginRight: '10px',
-              }}
-              src={`https://github.com/liviagabos.png`}
-            />
-            <Text variant="body4">liviagabos</Text>
-          </Box>
-          <Box
-            styleSheet={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'start',
-              flexDirection: 'row',
-              width: '100%',
-            }}
-          >
-            <Image
-              styleSheet={{
-                borderRadius: '50%',
-                width: '32px',
-                marginRight: '10px',
-              }}
-              src={`https://github.com/designernatan.png`}
-            />
-            <Text variant="body4">designernatan</Text>
-          </Box>
-          <Box
-            styleSheet={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'start',
-              flexDirection: 'row',
-              width: '100%',
-            }}
-          >
-            <Image
-              styleSheet={{
-                borderRadius: '50%',
-                width: '32px',
-                marginRight: '10px',
-              }}
-              src={`https://github.com/alura.png`}
-            />
-            <Text variant="body4">alura</Text>
-          </Box>
+          {users.map((user) => {
+            return (
+              <Box
+                styleSheet={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'start',
+                  flexDirection: 'row',
+                  width: '100%',
+                }}
+                key={user}
+              >
+                <Image
+                  styleSheet={{
+                    borderRadius: '50%',
+                    width: '32px',
+                  }}
+                  src={`https://github.com/${user}.png`}
+                />
+                <Link
+                  href={`https://github.com/${user}`}
+                  target={'_blank'}
+                  css={{
+                    color: '#fff',
+                    '&:hover': {
+                      color: '#ff1453',
+                    },
+                  }}
+                >
+                  {user}
+                </Link>
+              </Box>
+            )
+          })}
         </Box>
       </Box>
     </Box>

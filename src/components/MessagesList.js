@@ -4,7 +4,11 @@ import { Button } from '@nextui-org/react'
 import { useMessage } from '../hooks/useMessages'
 import Viewer from '../../src/components/Viewer'
 import { useChannel } from '../hooks/useChannels'
-import { getMessages, deleteMessage } from '../services/messages.service'
+import {
+  getMessages,
+  deleteMessage,
+  listenerMessages,
+} from '../services/messages.service'
 import {
   ArrowReply,
   CommentEdit,
@@ -47,7 +51,8 @@ marked.setOptions({
 import appConfig from '../../config.json'
 
 function MessagesList() {
-  const { messages, setMessages } = useMessage()
+  const { messages, setMessages, updateMessages, setUpdateMessages } =
+    useMessage()
   const [editable, setEditable] = useState(false)
   const [display, setDisplay] = useState({ idv4: '', display: 'none' })
   const { channel } = useChannel()
@@ -59,10 +64,10 @@ function MessagesList() {
 
   async function fetchDeleteMessage(messageIdv4, channelIdv4) {
     await deleteMessage(messageIdv4).then(({ data, error }) => {
-      if (error !== null) {
-        getMessages(channelIdv4).then(setMessages)
+      if (error === null) {
+        setUpdateMessages(!updateMessages)
       } else {
-        console.log(error)
+        console.log('error ao deletar', error)
       }
     })
     // await getMessages(channelIdv4).then(setMessages)
@@ -78,7 +83,7 @@ function MessagesList() {
       return 'Ontem'
     }
 
-    console.log('date', date)
+    // console.log('date', date)
 
     return date
   }
@@ -97,7 +102,14 @@ function MessagesList() {
       }}
     >
       {messages.map((message) => {
-        const markdown = marked.parse(message.text)
+        const text = message.text.startsWith(':sticker:')
+          ? `<img src="${message.text.replace(
+              ':sticker: ',
+              '',
+            )}" width="200px" alt="" />`
+          : message.text
+
+        const markdown = marked.parse(text)
         const sanitized = DOMPurify.sanitize(markdown)
         /*
         const html = Prism.highlight(
@@ -251,10 +263,10 @@ function MessagesList() {
                       <Delete size={sizeIcons} />
                     </Button>
                     <Button
+                      title="Editar"
                       onClick={() => {
                         handleEditable(!editable)
                       }}
-                      title="Editar"
                       css={{
                         borderRadius: '3px',
                         background: '#232939', // colors.pink800
