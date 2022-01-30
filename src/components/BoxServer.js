@@ -1,6 +1,5 @@
 import { Box, Text, Image } from '@skynexui/components'
 import Title from '../../src/components/Title'
-import IconLogOut from './IconLogOut'
 import Link from 'next/link'
 import MenuChannels from './MenuChannels'
 import { useRouter } from 'next/router'
