@@ -2,6 +2,7 @@ import { Box, Text, Image } from '@skynexui/components'
 import Title from '../../src/components/Title'
 import IconLogOut from './IconLogOut'
 import Link from 'next/link'
+import MenuChannels from './MenuChannels'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
@@ -80,29 +81,7 @@ function BoxServer({ userName, channels }) {
         }}
       >
         <Title tag={'h3'}>CANAIS</Title>
-        {channels.map((channel) => {
-          if (channel.idv4 === router.query.channel_id) {
-            return (
-              <Link
-                href={`/chat/${channel.idv4}/${userName}`}
-                key={channel.idv4}
-                passHref
-              >
-                <a># {channel.name}</a>
-              </Link>
-            )
-          } else {
-            return (
-              <Link
-                href={`/chat/${channel.idv4}/${userName}`}
-                key={channel.idv4}
-                passHref
-              >
-                <a># {channel.name}</a>
-              </Link>
-            )
-          }
-        })}
+        <MenuChannels channels={channels} />
       </Box>
 
       <Box
