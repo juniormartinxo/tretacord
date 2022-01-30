@@ -98,9 +98,9 @@ function BoxMembers() {
                 width: '32px',
                 marginRight: '10px',
               }}
-              src={`https://github.com/alura.png`}
+              src={`https://github.com/vanessametonini.png`}
             />
-            <Text variant="body4">alura</Text>
+            <Text variant="body4">vanessametonini</Text>
           </Box>
           <Box
             styleSheet={{
@@ -234,6 +234,25 @@ function BoxMembers() {
               src={`https://github.com/designernatan.png`}
             />
             <Text variant="body4">designernatan</Text>
+          </Box>
+          <Box
+            styleSheet={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'start',
+              flexDirection: 'row',
+              width: '100%',
+            }}
+          >
+            <Image
+              styleSheet={{
+                borderRadius: '50%',
+                width: '32px',
+                marginRight: '10px',
+              }}
+              src={`https://github.com/alura.png`}
+            />
+            <Text variant="body4">alura</Text>
           </Box>
         </Box>
       </Box>

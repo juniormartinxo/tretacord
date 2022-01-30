@@ -5,6 +5,11 @@ import { useMessage } from '../hooks/useMessages'
 import Viewer from '../../src/components/Viewer'
 import { useChannel } from '../hooks/useChannels'
 import { getMessages, deleteMessage } from '../services/messages.service'
+import {
+  ArrowReply,
+  CommentEdit,
+  Delete,
+} from '@styled-icons/fluentui-system-regular'
 
 import { marked } from 'marked'
 
@@ -46,6 +51,7 @@ function MessagesList() {
   const [editable, setEditable] = useState(false)
   const [display, setDisplay] = useState({ idv4: '', display: 'none' })
   const { channel } = useChannel()
+  const sizeIcons = 24
 
   function handleEditable(situation) {
     setEditable(situation)
@@ -186,26 +192,87 @@ function MessagesList() {
                         ? `${display.display}`
                         : 'none',
                     position: 'absolute',
-                    top: '-50px',
-                    right: '0',
+                    top: '-65px',
+                    right: '-12px',
                   }}
                   data-id={message.idv4}
                 >
-                  <Button.Group size="sm" color={'error'}>
-                    <Button>One</Button>
+                  <Button.Group
+                    size="sm"
+                    css={{
+                      borderRadius: '3px 3px 0 0', //
+                      border: '2px solid #131825',
+                      background: '#131825', // colors.pink800
+                    }}
+                  >
+                    <Button
+                      title="Responder"
+                      css={{
+                        borderRadius: '3px',
+                        background: '#232939', // colors.pink800
+                        color: '#c7d8ff',
+                        height: '24', // space[12]
+                        boxShadow: 'md', // shadows.md
+                        '&:hover': {
+                          background: '#ff1453',
+                        },
+                        '&:active': {
+                          background: '#ff1453333',
+                        },
+                        '&:focus': {
+                          borderColor: '#ff1453',
+                        },
+                      }}
+                    >
+                      <ArrowReply size={sizeIcons} />
+                    </Button>
                     <Button
                       onClick={() => {
                         fetchDeleteMessage(message.idv4, channel.id)
                       }}
+                      title="Excluir"
+                      css={{
+                        borderRadius: '3px',
+                        background: '#232939', // colors.pink800
+                        color: '#c7d8ff',
+                        height: '24', // space[12]
+                        boxShadow: 'md', // shadows.md
+                        '&:hover': {
+                          background: '#ff1453',
+                        },
+                        '&:active': {
+                          background: '#ff1453',
+                        },
+                        '&:focus': {
+                          borderColor: '#ff1453',
+                        },
+                      }}
                     >
-                      Excluir
+                      <Delete size={sizeIcons} />
                     </Button>
                     <Button
                       onClick={() => {
                         handleEditable(!editable)
                       }}
+                      title="Editar"
+                      css={{
+                        borderRadius: '3px',
+                        background: '#232939', // colors.pink800
+                        color: '#c7d8ff',
+                        height: '24', // space[12]
+                        boxShadow: 'md', // shadows.md
+                        '&:hover': {
+                          background: '#ff1453',
+                        },
+                        '&:active': {
+                          background: '#ff1453',
+                        },
+                        '&:focus': {
+                          borderColor: '#ff1453',
+                        },
+                      }}
                     >
-                      Editar
+                      <CommentEdit size={sizeIcons} />
                     </Button>
                   </Button.Group>
                 </Box>

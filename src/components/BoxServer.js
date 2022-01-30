@@ -5,6 +5,7 @@ import Link from 'next/link'
 import MenuChannels from './MenuChannels'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { SignOut } from '@styled-icons/fluentui-system-regular'
 
 import appConfig from '../../config.json'
 
@@ -164,7 +165,7 @@ function BoxServer({ userName, channels }) {
                     Sair
                   </Box>
                   <Box>
-                    <IconLogOut h={16} />
+                    <SignOut size={24} />
                   </Box>
                 </Box>
               </a>

@@ -73,6 +73,27 @@ const GlobalStyle = createGlobalStyle`
     color: #BF3636;
   }
 */
+a{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+    width: 100%;
+    padding: 15px;
+    color: #737b91;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+    cursor: pointer;
+    /* border: 1px dotted transparent; */
+    margin-bottom: 2px;
+
+    &:hover, &.active { {
+      color: #ff1453;
+      /* border: 1px dotted #ff1453; */
+      transition: all 0.2s ease;
+    }
+  }
   /* App fit Height */
   html,
   body,
