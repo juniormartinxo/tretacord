@@ -88,7 +88,7 @@ a{
     /* border: 1px dotted transparent; */
     margin-bottom: 2px;
 
-    &:hover, &.active { {
+    &:hover, &.active {
       color: #ff1453;
       /* border: 1px dotted #ff1453; */
       transition: all 0.2s ease;
