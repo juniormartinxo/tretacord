@@ -5,6 +5,12 @@ Seu canal de tretas na internet
 ---
 
 Projeto proposto na Imersão da Alura. | **Instrutor:** Mario Souto (Dev Soutinho)
+
+Projeto realizado com NextJS e Supabase
+
+Assista a apresentação do projeto no [Youtube](https://www.youtube.com/watch?v=7LHihEE65_A)
+
+
 ![image](https://user-images.githubusercontent.com/4163340/151731062-2fa4c9f6-1186-4463-844b-4a19dd93a39a.png)
 
 
