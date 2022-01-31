@@ -53,10 +53,14 @@ function BoxChat() {
   return (
     <Box
       styleSheet={{
-        display: 'flex',
-        alignItems: 'start',
-        justifyContent: 'space-between',
-        flexDirection: 'column',
+        display: 'grid',
+        gridTemplateColumns: '100%',
+        gridTemplateRows: '5vh auto 5vh',
+        gridColumnGap: '0px',
+        gridRowGap: '0px',
+        backgroundSize: 'cover',
+        backgroundBlendMode: 'multiply',
+        backgroundColor: '#1c2335',
         width: {
           xs: '100%',
           sm: '100%',
@@ -64,7 +68,6 @@ function BoxChat() {
           lg: '50%',
           xl: '70%',
         },
-        backgroundColor: '#1c2335',
       }}
     >
       <Box
@@ -76,7 +79,6 @@ function BoxChat() {
           borderBottom: '1px solid #000000',
           width: '100%',
           padding: '15px',
-          height: '5vh',
         }}
       >
         <Text
@@ -99,82 +101,67 @@ function BoxChat() {
         </Text>
       </Box>
 
+      {/* MESSAGES */}
       <Box
         styleSheet={{
+          position: 'relative',
           display: 'flex',
-          alignItems: 'start',
-          justifyContent: 'end',
+          flex: 1,
+          height: '85vh',
           flexDirection: 'column',
-          width: '100%',
-          padding: '15px',
-          minHeight: '95vh',
-          maxHeight: '95vh',
+          borderRadius: '5px',
+          padding: '0 15px',
         }}
       >
-        <Box
+        <MessagesList />
+      </Box>
+
+      {/* FORM */}
+      <Box
+        as="form"
+        styleSheet={{
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <TextField
+          placeholder={`Tretar em # | ${channel.name}`}
+          type="textarea"
+          rows={rows}
           styleSheet={{
-            display: 'flex',
-            alignItems: 'center',
             width: '100%',
-            height: '100%',
-            overflow: 'hidden',
-            overflowY: 'scroll',
+            border: '0',
+            resize: 'none',
+            borderRadius: '5px',
+            padding: '6px 8px',
+            backgroundColor: appConfig.theme.colors.neutrals[800],
+            marginRight: '12px',
+            color: appConfig.theme.colors.neutrals[200],
           }}
-        >
-          <MessagesList />
-        </Box>
+          onChange={(e) => setMessage(e.target.value)}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter' && e.shiftKey) {
+              /* console.log(e.shiftKey) */
+            } else {
+              if (e.key === 'Enter') {
+                handleMessages(message)
 
-        <Box
-          as="form"
-          styleSheet={{
-            display: 'flex',
-            alignItems: 'center',
-            width: '100%',
-          }}
-        >
-          <TextField
-            placeholder={`Tretar em # | ${channel.name}`}
-            type="textarea"
-            rows={rows}
-            styleSheet={{
-              width: '100%',
-              border: '0',
-              resize: 'none',
-              borderRadius: '5px',
-              padding: '1rem 3.5rem',
-              backgroundColor: appConfig.theme.colors.neutrals[800],
-              color: appConfig.theme.colors.neutrals[200],
-              backgroundClip: 'padding-box',
-              appearance: 'none',
-              overflow: 'hidden',
-              display: 'flex',
-              alignContent: 'center',
-            }}
-            onChange={(e) => setMessage(e.target.value)}
-            onKeyPress={(e) => {
-              if (e.key === 'Enter' && e.shiftKey) {
-                /* console.log(e.shiftKey) */
-              } else {
-                if (e.key === 'Enter') {
-                  handleMessages(message)
+                e.target.value = ''
 
-                  e.target.value = ''
-
-                  e.preventDefault()
-                }
+                e.preventDefault()
               }
-            }}
-            onInput={(e) => {
-              setRows(e.target.value.split('\n').length)
-            }}
-          />
-          <ButtonSendSticker
-            onStickerClick={(sticker) => {
-              console.log('sticker', sticker)
-              handleMessages(`:sticker: ${sticker}`)
-            }}
-          />
-        </Box>
+            }
+          }}
+          onInput={(e) => {
+            setRows(e.target.value.split('\n').length)
+          }}
+        />
+        <ButtonSendSticker
+          onStickerClick={(sticker) => {
+            // console.log('sticker', sticker)
+            handleMessages(`:sticker: ${sticker}`)
+          }}
+        />
       </Box>
     </Box>
   )

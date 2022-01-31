@@ -92,13 +92,13 @@ function MessagesList() {
     <Box
       tag="ul"
       styleSheet={{
+        overflow: 'auto',
+        overflowX: 'hidden',
         display: 'flex',
         flexDirection: 'column-reverse',
         flex: 1,
         color: appConfig.theme.colors.neutrals['000'],
-        marginBottom: '20px',
-        height: '100%',
-        overflow: 'none',
+        marginBottom: '16px',
       }}
     >
       {messages.map((message) => {
@@ -120,16 +120,16 @@ function MessagesList() {
         */
 
         return (
-          <Box
+          <Text
             key={message.id}
+            tag="li"
             styleSheet={{
               borderRadius: '5px',
-              padding: '6px',
+              padding: '8px',
               marginBottom: '12px',
-              transition: 'background-color 0.5s ease',
+              marginRight: '5px',
               hover: {
                 backgroundColor: appConfig.theme.colors.neutrals[700],
-                transition: 'background-color 0.5s ease',
               },
             }}
             id={message.idv4}
@@ -153,40 +153,29 @@ function MessagesList() {
                   width: '100%',
                 }}
               >
-                <Box>
-                  <Image
-                    styleSheet={{
-                      width: '20px',
-                      height: '20px',
-                      borderRadius: '50%',
-                      display: 'inline-block',
-                      marginRight: '8px',
-                    }}
-                    src={`https://github.com/${message.user}.png`}
-                  />
-                </Box>
-                <Box
+                <Image
                   styleSheet={{
-                    fontSize: '14rem',
+                    width: '20px',
+                    height: '20px',
+                    borderRadius: '50%',
+                    display: 'inline-block',
+                    marginRight: '8px',
                   }}
-                >
-                  <Text tag="strong">{message.user}</Text>
-                </Box>
-                <Box
+                  src={`https://github.com/${message.user}.png`}
+                />
+                <Text tag="strong">{message.user}</Text>
+                <Text
                   styleSheet={{
-                    marginLeft: '15px',
+                    fontSize: '10px',
+                    marginLeft: '8px',
+                    color: appConfig.theme.colors.neutrals[300],
                   }}
+                  tag="span"
                 >
-                  <Text
-                    styleSheet={{
-                      fontSize: '12px',
-                      color: appConfig.theme.colors.neutrals[400],
-                    }}
-                  >
-                    {handleDate(message.date)} - {message.time}
-                  </Text>
-                </Box>
+                  {handleDate(message.date)} - {message.time}
+                </Text>
               </Box>
+
               <Text
                 styleSheet={{
                   fontSize: '14px',
@@ -204,23 +193,22 @@ function MessagesList() {
                         ? `${display.display}`
                         : 'none',
                     position: 'absolute',
-                    top: '-65px',
-                    right: '-12px',
+                    top: '-32px',
+                    right: '0',
                   }}
                   data-id={message.idv4}
                 >
                   <Button.Group
                     size="sm"
                     css={{
-                      borderRadius: '3px 3px 0 0', //
-                      border: '2px solid #131825',
+                      borderRadius: '0 0 0 3px', //
                       background: '#131825', // colors.pink800
                     }}
                   >
                     <Button
                       title="Responder"
                       css={{
-                        borderRadius: '3px',
+                        borderRadius: '0  0 0 25px',
                         background: '#232939', // colors.pink800
                         color: '#c7d8ff',
                         height: '24', // space[12]
@@ -238,13 +226,14 @@ function MessagesList() {
                     >
                       <ArrowReply size={sizeIcons} />
                     </Button>
+
                     <Button
                       onClick={() => {
                         fetchDeleteMessage(message.idv4, channel.id)
                       }}
                       title="Excluir"
                       css={{
-                        borderRadius: '3px',
+                        borderRadius: '0',
                         background: '#232939', // colors.pink800
                         color: '#c7d8ff',
                         height: '24', // space[12]
@@ -268,7 +257,7 @@ function MessagesList() {
                         handleEditable(!editable)
                       }}
                       css={{
-                        borderRadius: '3px',
+                        borderRadius: '0  0 25px 0',
                         background: '#232939', // colors.pink800
                         color: '#c7d8ff',
                         height: '24', // space[12]
@@ -291,7 +280,7 @@ function MessagesList() {
                 <Viewer mkdText={sanitized} editable={editable} />
               </Text>
             </Box>
-          </Box>
+          </Text>
         )
       })}
     </Box>
