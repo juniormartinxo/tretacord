@@ -30,8 +30,20 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     line-height: 1;
-    overflow: hidden;
   }
+
+
+  @media (max-width: 599px) { body { overflow: auto} }
+
+  @media (min-width: 600px) { body { overflow: auto} }
+
+  @media (min-width: 900px) {  body { overflow: hidden} }
+
+  @media (min-width: 1200px) {  body { overflow: hidden} }
+
+  @media (min-width: 1800px) { body { overflow: hidden} }
+
+
   ol, ul {
     list-style: none;
   }
